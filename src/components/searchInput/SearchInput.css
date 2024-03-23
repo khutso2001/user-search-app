@@ -1,0 +1,36 @@
+.searchInput{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    height: 3.7rem;
+    background-color: var(---white);
+    box-shadow: 0px 16px 30px -10px #4660BB33;
+    width: 100%;
+    padding: 7px 7px 7px 16px;
+  }
+  .searchInput input{
+    font-size: 13px;
+    font-weight:400;
+    color: #4B6A9B;
+    line-height: 25px;
+    font-family: "Space Mono", monospace;
+    max-width: 184px;
+    width: 100%;
+    height: 25px;
+    border: none;
+  }
+  .searchInputButton{
+    font-family: "Space Mono", monospace;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20.73px;
+    text-align: center;
+    background-color: var(--electric);
+    width: 84px;
+    height: 46px;
+    opacity: 0px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }

@@ -1,38 +1,128 @@
-.App {
-  text-align: center;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 100vh;
+  align-items: center;
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  padding: 0px 30px 0px 30px;
+}
+:root{
+  --electric:#0079ff;
+  --gray:#697c9a;
+  --darkSkt:#4bca9b;
+  --darkBlue:#2b3442;
+  --lightBg:#f6f8ff;
+  --light:#fefefe;
+  ---white:#ffffff;
+  --dark:#141d2f;
+  --semiDark:#1e2a47;
+  --lightBlue:#4B6A9B;
+}
+.userAvatar{
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+}
+.userAvatar{
+  margin-right: 1.5rem;
+}
+.personalCard{
+  display: flex;
 }
 
-.App-link {
-  color: #61dafb;
+.userName{
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 23.7px;
+  text-align: left;
+  color:var( --darkBlue) ;
 }
+.userLogin{
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.25px;
+  text-align: left;
+  color: var(--electric);
+}
+.userDate{
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.25px;
+  text-align: left;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.moreInfo{
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 25px;
+  text-align: left;
+  
+}
+.userFollow{
+  background-color: var(--lightBg);
+  display: flex;
+  justify-content: center;
+  padding: 20px ;
+}
+.userFollowInfo{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  width: 250px;
+  background-color: var(--lightBg);
+}
+.userFollowInfo label{
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16.29px;
+  color: var(--lightBlue);
+}
+.userFollowInfo p{
+font-size: 16px;
+font-weight: 700;
+line-height: 23.7px;
+text-align: center;
+color: var(--darkBlue);
+}
+.locationInfo{
+  display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+}
+.locationInfo div{
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+.locationInfo div img{
+  margin-right: 20px;
+}
+.location img{
+  margin-left: 6px;
+}
+.locationInfo div p,.locationInfo div a{
+font-size: 13px;
+font-weight: 400;
+line-height: 19.25px;
+text-align: left;
+}
+.githubLink a{
+  text-decoration: none;
+}
+.mainCardInfo {
+  padding: 30px 24px 50px 24px;
+  background-color: var(---white);
+  box-shadow: 0px 16px 30px -10px #4660BB33;
+  border-radius: 10px;
+  margin-top: 30px;
 }
