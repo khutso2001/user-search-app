@@ -7,41 +7,8 @@ import LocationIcon from "./assets/images/icons/icon-location.svg";
 import CompanuIcon from "./assets/images/icons/icon-company.svg";
 import TwitterIcon from "./assets/images/icons/icon-twitter.svg";
 import WebSiteIcon from "./assets/images/icons/icon-website.svg";
+import { User } from "./userInterfase";
 
-interface User {
-  login: string;
-  id: number;
-  node_id: string;
-  avatar_url: string;
-  gravatar_id: string;
-  url: string;
-  html_url: string;
-  followers_url: string;
-  following_url: string;
-  gists_url: string;
-  starred_url: string;
-  subscriptions_url: string;
-  organizations_url: string;
-  repos_url: string;
-  events_url: string;
-  received_events_url: string;
-  type: string;
-  site_admin: false;
-  name: string;
-  company: string;
-  blog: string;
-  location: string;
-  email: null;
-  hireable: null;
-  bio: null;
-  twitter_username: null;
-  public_repos: number;
-  public_gists: Number;
-  followers: number;
-  following: number;
-  created_at: string;
-  updated_at: string;
-}
 function App() {
   const [changeMode, setChangeMode] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("");
@@ -60,8 +27,7 @@ function App() {
 
   const requestUser = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/octacat
-      `);
+      const response = await axios.get(`http://localhost:8000/octacat`);
       const data = response.data;
       setItems(data);
     } catch (error) {
@@ -73,27 +39,45 @@ function App() {
     requestUser();
   };
 
+  function mapUserDetails<T>(
+    items: User[] | null,
+    renderFn: (user: User, index: number) => T
+  ) {
+    if (!items || !Array.isArray(items)) {
+      return null;
+    }
+
+    return items.map((user, index) => renderFn(user, index));
+  }
   return (
     <div className={changeMode ? "App dark-mode" : "App light-mode"}>
       <Header handleChangeMode={handleChangeMode} changeMode={changeMode} />
       <SearchInput
         changeInputValue={changeInputValue}
         clickChangeInputValue={clickChangeInputValue}
+        changeMode={changeMode}
       />
-      <div className="mainCardInfo">
+      <div
+        className="mainCardInfo"
+        style={{
+          color: changeMode ? "#FFFFFF" : "#4B6A9B",
+          background: changeMode ? "#1E2A47" : "#FEFEFE",
+        }}
+      >
         <div className="personalCard">
-          <ul>
-            {items &&
-              items.map((user) => (
-                <li>
-                  <img src={user.avatar_url} className="userAvatar" />
-                </li>
-              ))}
-          </ul>
+          {items &&
+            items.map((user) => (
+              <img src={user.avatar_url} className="userAvatar" />
+            ))}
+
           <div className="personalInfo">
             <div className="userInfo">
-              <h2 className="userName">The Octocat</h2>
-              <h3 className="userLogin">@octocat</h3>
+              {items &&
+                items.map((user) => <h2 className="userName">{user.name}</h2>)}
+              {items &&
+                items.map((user) => (
+                  <h3 className="userLogin">@{user.login} </h3>
+                ))}
             </div>
             <p className="userDate">Joined 25 Jan 2011</p>
           </div>
@@ -104,38 +88,53 @@ function App() {
             odio. Quisque volutpat mattis eros.
           </p>
         </div>
-        <div className="userFollow">
-          <div className="userFollowInfo">
+        <div
+          className="userFollow"
+          style={{
+            color: changeMode ? "#FFFFFF" : "#4B6A9B",
+            background: changeMode ? "#141D2F" : "#F6F8FF",
+          }}
+        >
+          <div
+            className="userFollowInfo"
+            style={{
+              color: changeMode ? "#FFFFFF" : "#4B6A9B",
+              background: changeMode ? "#141D2F" : "#F6F8FF",
+            }}
+          >
             <div>
               <label>Repos</label>
-              <p>8</p>
+              {items && items.map((user) => <p>{user.public_repos}</p>)}
             </div>
             <div>
               <label>Followers</label>
-              <p>2928</p>
+              {items && items.map((user) => <p>{user.followers}</p>)}
             </div>
             <div>
               <label>Following</label>
-              <p>9</p>
+              {items && items.map((user) => <p>{user.following}</p>)}
             </div>
           </div>
         </div>
         <div className="locationInfo">
           <div className="location">
             <img src={LocationIcon} />
-            <p>San Francisco</p>
+            {items && items.map((user) => <p>{user.location}</p>)}
           </div>
           <div className="githubLink">
             <img src={WebSiteIcon} />
-            <a href="https://github.blog">https://github.blog</a>
+            {items &&
+              items.map((user) => (
+                <a href="https://github.blog">{user.blog}</a>
+              ))}
           </div>
           <div className="twitter">
             <img src={TwitterIcon} />
-            <p>Not Available</p>
+            {items && items.map((user) => <p>{user.twitter_username}</p>)}
           </div>
           <div className="github">
             <img src={CompanuIcon} />
-            <p>@github</p>
+            {items && items.map((user) => <p>{user.company}</p>)}
           </div>
         </div>
       </div>

@@ -5,13 +5,24 @@ import "./SearchInput.css";
 interface Props {
   changeInputValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
   clickChangeInputValue: () => void;
+  changeMode: Boolean;
 }
 export default function SearchInput(props: Props) {
-  const { changeInputValue, clickChangeInputValue } = props;
+  const { changeInputValue, clickChangeInputValue, changeMode } = props;
   return (
-    <div className="searchInput">
+    <div
+      className="searchInput"
+      style={{
+        color: changeMode ? "#FFFFFF" : "#4B6A9B",
+        background: changeMode ? "#1E2A47" : "#FEFEFE",
+      }}
+    >
       <img src={SearchIcon} alt="search icon" className="searchInputIcon" />
       <input
+        style={{
+          color: changeMode ? "#FFFFFF" : "#4B6A9B",
+          background: changeMode ? "#1E2A47" : "#FEFEFE",
+        }}
         type="text"
         placeholder="Search GitHub username…"
         onChange={changeInputValue}
